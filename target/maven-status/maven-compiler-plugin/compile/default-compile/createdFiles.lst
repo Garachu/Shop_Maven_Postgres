@@ -1,8 +1,0 @@
-com/shop/product/Product.class
-com/shop/user/User.class
-com/shop/core/BaseEntity.class
-com/shop/MainEntry.class
-com/shop/product/ProductRepository.class
-com/shop/category/Category.class
-com/shop/sale/Sale.class
-com/shop/product/ProductController.class
