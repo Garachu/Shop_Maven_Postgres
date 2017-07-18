@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.meg</groupId>
+    <artifactId>Shop_Maven_Postgres</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <!--
+   loads all the default configurations required for the basic spring boot applications.
+   The parent tag tells Maven that we'd like to use another pom to encapsulate ours i.e inherit various properties and tags from Spring Boot.
+   Mainly it's there to set things up easily. one of nicest features is that you don't have to include version numbers of Spring Boot libraries in your pom - it will figure them out for you!
+   -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.4.3.RELEASE</version>
+    </parent>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <h2.version>1.4.187</h2.version>
+    </properties>
+
+    <!--Define our depencencies - the libraries we'd like to use-->
+    <!--dependencies is just a fancy way of telling Maven "Please download these JARs into my project's classpath"-->
+    <dependencies>
+
+        <!--
+        Spring Boot comes with one-stop-shop package called Starters that include everything you need for a ready-made application
+        These are what you typically see in the Spring Initialzr with all the dependencies you can wire in
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-rest</artifactId>
+        </dependency>
+        <!--
+        Add JPA support
+        will download the files required for spring data jpa.
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <!--
+        proper database drivers
+        -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.4-1206-jdbc42</version>
+        </dependency>
+        <!--
+        Add typical dependencies for a web application
+        required because it is web based application to expose the REST endpoints
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Add freemarker template support -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
+        </dependency>
+
+        <!-- Add Hikari Connection Pooling support -->
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+        </dependency>
+        <!--
+        Add H2 database support [for running with local profile]
+        Easiest way is to use one that is embedded, which just means it's in-memory,
+        so you don't have to connect it to something lie MySQL with a url and login details
+        -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
+        </dependency>
+        <!--
+        Add MySQL database support [for running with PRODUCTION profile]
+        -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.5</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <!--
+                Include if you want to make an executable jar[FAT JAR which
+                includes all dependencies along with sprinboot loader] that you can run on
+                    commandline using java -jar NAME
+                    -->
+                <!--
+                This makes running your app simple: just type
+                mvn spring-boot:run
+                -->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>

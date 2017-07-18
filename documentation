@@ -1,0 +1,10 @@
+
+Resources: Category, Product, Sale, User, Incoming
+
+Product
+GET     /products       Get all Products
+GET     /products/id    Get the product
+POST    /products       Create new Product
+PUT     /products/id    Edit the Product
+DELETE  /products/id    Delete the Product
+
