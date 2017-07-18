@@ -1,7 +1,9 @@
 
 # Intellij
-.idea/
 *.iml
+.idea/
+
 
 # Maven
 target/
+src/test/
