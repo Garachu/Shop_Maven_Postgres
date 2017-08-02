@@ -1,10 +1,12 @@
 package com.shop.sale;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.shop.core.BaseEntity;
 import com.shop.product.Product;
-import com.shop.user.User;
+import com.shop.user.SUser;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -12,29 +14,36 @@ import java.util.Date;
  */
 
 @Entity
-public class Sale{
+@Table(name = "sale", catalog = "shop_home_test", schema = "base")
+public class Sale extends BaseEntity{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-
+    @NotNull
     private int sp;
+
+    @NotNull
     private int quantity;
+
+    @NotNull
     private Date timestamp;
+
+    @NotNull
     private int profit;
 
     @ManyToOne()
     @JoinColumn(name="product")
+    //@JsonIgnore
     private Product product;
 
     @ManyToOne()
     @JoinColumn(name="suser")
-    private User user;
+    @JsonIgnore
+    private SUser user;
 
     public Sale() {
+        super();
     }
 
-    public Sale(int sp, int quantity, Date timestamp, Product product, int profit, User user) {
+    public Sale(int sp, int quantity, Date timestamp, Product product, int profit, SUser user) {
         this();
         this.sp = sp;
         this.quantity = quantity;
@@ -42,14 +51,6 @@ public class Sale{
         this.product = product;
         this.profit = profit;
         this.user = user;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public int getSp() {
@@ -92,11 +93,11 @@ public class Sale{
         this.profit = profit;
     }
 
-    public User getUser() {
+    public SUser getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(SUser user) {
         this.user = user;
     }
 }

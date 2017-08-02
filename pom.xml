@@ -76,6 +76,7 @@
         Add H2 database support [for running with local profile]
         Easiest way is to use one that is embedded, which just means it's in-memory,
         so you don't have to connect it to something lie MySQL with a url and login details
+        H2 DB: in-memory database. It eliminates the need for configuring and starting an actual database for test purposes.
         -->
         <dependency>
             <groupId>com.h2database</groupId>
@@ -89,6 +90,24 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
+        <!--
+        The spring-boot-starter-test is the primary dependency that contains the majority of elements required for tests.
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <version>1.5.3.RELEASE</version>
+        </dependency>
+        <!--
+        Security here it goes
+        Once the spring-boot-starter-security dependency on the classpath of the application – Basic Authentication is enabled by default.
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>

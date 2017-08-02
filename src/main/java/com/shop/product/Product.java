@@ -1,11 +1,13 @@
 package com.shop.product;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.shop.category.Category;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.shop.core.BaseEntity;
 import com.shop.sale.Sale;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,34 +16,42 @@ import java.util.List;
  */
 
 @Entity
+@Table(name = "product", catalog = "shop_home_test", schema = "base")
 public class Product{
+
+    @JsonProperty
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotNull(message = "label may not be null")
+    @Size(min = 2, max = 40)
     private String label;
 
+    @NotNull(message = "description may not be null")
     private String description;
 
+    @NotNull(message = "bp may not be null")
     private int bp;
 
+    @NotNull(message = "price may not be null")
     private int price;
 
     private Boolean recordstate;
 
-    @ManyToOne()
-    @JoinColumn(name="category")
-    @JsonIgnore
-    private Category category;
+    @NotNull
+    @Size(min = 2, max = 40)
+    private String category;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     @JsonIgnore
     private List<Sale> sales = new ArrayList<>();
 
     public Product() {
+        super();
     }
 
-    public Product(String label, String description, int bp, int price, Boolean recordstate, Category category) {
+    public Product(String label, String description, int bp, int price, Boolean recordstate, String category) {
         this();
         this.label = label;
         this.description = description;
@@ -99,11 +109,11 @@ public class Product{
         this.recordstate = recordstate;
     }
 
-    public Category getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 

@@ -11,11 +11,8 @@ import java.util.List;
  */
 
 @Entity
-public class User{
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+@Table(name = "user", catalog = "shop_home_test", schema = "base")
+public class SUser extends BaseEntity{
 
     private String fullname;
     private String username;
@@ -24,21 +21,14 @@ public class User{
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Sale> sales;
 
-    public User() {
+    public SUser() {
+        super();
     }
 
-    public User(String fullname, String username, String password) {
+    public SUser(String fullname, String username, String password) {
         this.fullname = fullname;
         this.username = username;
         this.password = password;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getFullname() {

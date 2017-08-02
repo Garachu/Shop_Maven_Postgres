@@ -1,19 +1,17 @@
 package com.shop.core;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by meg on 7/15/17.
  */
 
+@MappedSuperclass
+public abstract class BaseEntity {
 
-public class BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private final Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private final Integer id;
 
 
     protected BaseEntity() {

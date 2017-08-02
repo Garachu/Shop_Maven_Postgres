@@ -1,0 +1,35 @@
+
+pg_dump -U devdi -d shop_home -f shop_home_2017_07_20
+
+su - postgres
+dropdb shop_home_test
+createdb shop_home_test
+su - devdi
+psql shop_home_test < /home/meg/Downloads/shop_home_2017_07_20
+psql shop_home_test
+UPDATE base.product SET label = TRIM(label);
+UPDATE base.product SET description = TRIM(description);
+
+ALTER TABLE base.product
+ADD column categ VARCHAR;
+
+UPDATE base.product SET
+    categ='Motorbyce'
+WHERE category = 2;
+
+UPDATE base.product SET
+    categ='Tuktuk'
+WHERE category = 1;
+
+ALTER TABLE base.product
+DROP COLUMN category;
+
+ALTER TABLE base.product
+ADD column category VARCHAR;
+
+UPDATE base.product SET category=categ;
+
+ALTER TABLE base.product
+DROP COLUMN categ;
+
+pg_dump -U devdi -d shop_home_test -f shop_home_test_2017_07_20

@@ -6,4 +6,6 @@
 
 # Maven
 target/
-src/test/
+
+#Tools Used
+#IntelliJ IDEA, Maven, Java 8
