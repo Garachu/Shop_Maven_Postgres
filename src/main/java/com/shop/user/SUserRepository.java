@@ -1,7 +1,6 @@
 package com.shop.user;
 
-import com.shop.core.BaseRepository;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.shop.core.repository.BaseRepository;
 
 import java.util.Optional;
 

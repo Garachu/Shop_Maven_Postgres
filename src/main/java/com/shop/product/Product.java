@@ -1,8 +1,7 @@
 package com.shop.product;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.shop.core.BaseEntity;
+import com.shop.core.entity.BaseEntity;
 import com.shop.sale.Sale;
 
 import javax.persistence.*;
@@ -17,12 +16,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "product", catalog = "shop_home_test", schema = "base")
-public class Product{
-
-    @JsonProperty
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+public class Product extends BaseEntity{
 
     @NotNull(message = "label may not be null")
     @Size(min = 2, max = 40)
@@ -59,14 +53,6 @@ public class Product{
         this.price = price;
         this.recordstate = recordstate;
         this.category = category;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getLabel() {

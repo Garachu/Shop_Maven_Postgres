@@ -39,11 +39,6 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 @WebAppConfiguration //Enables web context testing
 public class SaleRestControllerTest {
 
-    //All tests specify a application/json content-type and expect responses of that content-type, as well.
-    private MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
-            MediaType.APPLICATION_JSON.getSubtype(),
-            Charset.forName("utf8"));
-
     //The MockMvc is the center piece: all tests will invariably go through the MockMvc type to mock HTTP requests against the service.
     private MockMvc mockMvc;
 
@@ -84,7 +79,7 @@ public class SaleRestControllerTest {
     public void findAll() throws Exception {
         mockMvc.perform(get("/sales"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(contentType));
+                .andExpect(content().contentType(TestUtil.contentType));
     }
 
     @Test
@@ -97,7 +92,7 @@ public class SaleRestControllerTest {
     public void createSaleWithInvalidProduct() throws Exception {
 
         this.mockMvc.perform(post("/sales")
-                .contentType(contentType)
+                .contentType(TestUtil.contentType)
                 .content(json(new SaleInModel(900, 2, "2017-07-24", 99999, 9999))))
                 .andExpect(status().isNotFound());
     }
@@ -112,7 +107,7 @@ public class SaleRestControllerTest {
         saleInModel.setUserId(999);
 
         this.mockMvc.perform(post("/sales")
-                .contentType(contentType)
+                .contentType(TestUtil.contentType)
                 .content(json(new SaleInModel(900, 2, "2017-07-24", 9, 999))))
                 .andExpect(status().isNotFound());
     }
@@ -125,7 +120,7 @@ public class SaleRestControllerTest {
         }
 
         this.mockMvc.perform(post("/sales")
-                .contentType(contentType)
+                .contentType(TestUtil.contentType)
                 .content(json(saleInModel)))
                 .andExpect(status().isCreated());
     }

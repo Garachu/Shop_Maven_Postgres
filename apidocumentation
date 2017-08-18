@@ -28,3 +28,18 @@ POST        shop/sales
 {
 
 }
+
+Account
+--------------------------------------------------------------------------------------------------------------
+POST        shop/accounts
+
+{
+	"accountId":"29380231",
+	"accountName":"Margaret Wambui Garachu",
+	"accountContact":"0700242450",
+	"accountType":"Creditor",
+	"accountNarration":"Supplier",
+	"date": "2017-08-16",
+	"balance": "18540"
+
+}

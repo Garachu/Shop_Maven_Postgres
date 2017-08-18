@@ -1,4 +1,4 @@
-package com.shop.errorhandling;
+package com.shop.core.errorhandling;
 
 import com.shop.product.ProductNotFoundException;
 import com.shop.sale.SaleNotFoundException;

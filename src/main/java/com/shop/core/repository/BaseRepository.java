@@ -1,4 +1,4 @@
-package com.shop.core;
+package com.shop.core.repository;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;

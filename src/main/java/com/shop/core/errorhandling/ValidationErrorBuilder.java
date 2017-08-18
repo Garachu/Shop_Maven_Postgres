@@ -1,4 +1,4 @@
-package com.shop.errorhandling;
+package com.shop.core.errorhandling;
 
 import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;

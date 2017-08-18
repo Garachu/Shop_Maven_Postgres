@@ -1,0 +1,11 @@
+#Deployment and Monitoring
+
+mvn clean install
+java -jar target/myproject.jar
+
+curl -i -X GET -d username=meg -d password=password http://localhost:8081/shop/products
+
+#--request option specifies the request method to be used, can also use -X as an alternate to --request option
+#-I option only fetches the HTTP headers sent by the server. The alternate to -I is the --head option.
+curl --request GET -I --user  meg:password http://localhost:8081/shop/products
+curl -X GET -I --user  meg:password http://localhost:8081/shop/products

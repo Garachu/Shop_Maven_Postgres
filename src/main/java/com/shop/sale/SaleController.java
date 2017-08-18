@@ -1,7 +1,7 @@
 package com.shop.sale;
 
 import com.shop.core.Result;
-import com.shop.errorhandling.RestPrecondition;
+import com.shop.core.errorhandling.RestPrecondition;
 import com.shop.product.Product;
 import com.shop.product.ProductService;
 import com.shop.user.SUser;
@@ -14,8 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,8 +33,6 @@ class SaleController {
     private final SUserService sUserService;
 
     private final SaleRepository saleRepository;
-
-    private static final Logger log = LoggerFactory.getLogger(SaleController.class);
 
     @Autowired
     public SaleController(SaleService saleService, ProductService productService, SUserService sUserService, SaleRepository saleRepository) {

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class ProductNotFoundException extends RuntimeException{
 
     public ProductNotFoundException(int productId) {
-
         super("could not find product with id:  '" + productId + "'.");
     }
 

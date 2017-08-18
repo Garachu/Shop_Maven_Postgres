@@ -36,10 +36,6 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 @WebAppConfiguration
 public class ProductRestControllerTest {
 
-    private MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
-            MediaType.APPLICATION_JSON.getSubtype(),
-            Charset.forName("utf8"));
-
     private MockMvc mockMvc;
 
     private int producId = 99999;
@@ -70,14 +66,14 @@ public class ProductRestControllerTest {
     public void readProducts() throws Exception {
         mockMvc.perform(get("/products"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(contentType));
+                .andExpect(content().contentType(TestUtil.contentType));
     }
 
     @Test
     public void createProduct() throws Exception {
         String productJson = json(new Product("actual", "actual", 500, 600, Boolean.TRUE, "test"));
         this.mockMvc.perform(post("/products")
-                .contentType(contentType)
+                .contentType(TestUtil.contentType)
                 .content(productJson))
                 .andExpect(status().isCreated());
     }
@@ -86,7 +82,7 @@ public class ProductRestControllerTest {
     public void productNotFound() throws Exception {
         mockMvc.perform(get("/products/" + producId)
                 .content(this.json(new Product()))
-                .contentType(contentType))
+                .contentType(TestUtil.contentType))
                 .andExpect(status().isNotFound());
     }
 

@@ -33,3 +33,6 @@ ALTER TABLE base.product
 DROP COLUMN categ;
 
 pg_dump -U devdi -d shop_home_test -f shop_home_test_2017_07_20
+
+
+

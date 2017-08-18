@@ -1,4 +1,4 @@
-package com.shop.errorhandling;
+package com.shop.core.errorhandling;
 
 import org.springframework.http.HttpStatus;
 
@@ -18,20 +18,20 @@ public class ApiError {
     private String message;
 
     //List of constructed error messages
-    private List<String> errors;
+    //private List<String> errors;
 
     public ApiError(HttpStatus status, String message, List<String> errors) {
         super();
         this.status = status;
         this.message = message;
-        this.errors = errors;
+        //this.errors = errors;
     }
 
     public ApiError(HttpStatus status, String message, String error) {
         super();
         this.status = status;
         this.message = message;
-        errors = Arrays.asList(error);
+        //errors = Arrays.asList(error);
     }
 
     public HttpStatus getStatus() {
@@ -50,11 +50,11 @@ public class ApiError {
         this.message = message;
     }
 
-    public List<String> getErrors() {
-        return errors;
-    }
-
-    public void setErrors(List<String> errors) {
-        this.errors = errors;
-    }
+//    public List<String> getErrors() {
+//        return errors;
+//    }
+//
+//    public void setErrors(List<String> errors) {
+//        this.errors = errors;
+//    }
 }

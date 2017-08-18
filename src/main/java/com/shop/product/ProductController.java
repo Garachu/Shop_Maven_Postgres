@@ -1,7 +1,8 @@
 package com.shop.product;
 
 import com.shop.core.Result;
-import com.shop.errorhandling.RestPrecondition;
+import com.shop.core.errorhandling.RestPrecondition;
+import com.shop.core.errorhandling.ValidationErrorBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/products")
 public class ProductController {
-
-    private static final Logger log = LoggerFactory.getLogger(ProductController.class);
 
     private final ProductService productService;
 
@@ -48,8 +47,11 @@ public class ProductController {
 
     //POST        shop/products                       Create new Product
     @RequestMapping(method = RequestMethod.POST)
-    //Using Binding to bind the body of the request to Product object.
     public ResponseEntity<?> add(@Valid @RequestBody Product product, Errors errors) {
+        if(errors.hasErrors()){
+            return  ResponseEntity.badRequest().body(ValidationErrorBuilder.fromBindingErrors(errors));
+        }
+
         Result result = new Result();
         try {
             Product saved = productService.save(product);
@@ -61,7 +63,6 @@ public class ProductController {
             result.setResult(Arrays.asList(saved));
             return ResponseEntity.status(HttpStatus.CREATED.value()).body(result);
         } catch (Exception e) {
-            result.setMessage(e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value()).body(result);
         }
     }

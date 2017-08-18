@@ -13,6 +13,7 @@ import java.util.Date;
 /**
  * Created by meg on 7/23/17.
  */
+
 public class SaleInModel {
 
     @NotNull

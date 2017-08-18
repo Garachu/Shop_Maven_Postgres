@@ -20,7 +20,7 @@ public class SaleOutModel {
 
 
     @JsonFormat
-            (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+            (shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date date;
     private String userName;
 

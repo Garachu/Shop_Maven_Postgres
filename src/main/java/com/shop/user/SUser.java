@@ -1,7 +1,8 @@
 package com.shop.user;
 
-import com.shop.core.BaseEntity;
+import com.shop.core.entity.BaseEntity;
 import com.shop.sale.Sale;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,8 +15,11 @@ import java.util.List;
 @Table(name = "user", catalog = "shop_home_test", schema = "base")
 public class SUser extends BaseEntity{
 
+    @NotBlank(message = "fullname must not be blank!")
     private String fullname;
+    @NotBlank(message = "username must not be blank!")
     private String username;
+    @NotBlank(message = "password must not be blank!")
     private String password;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")

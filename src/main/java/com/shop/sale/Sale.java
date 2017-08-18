@@ -1,7 +1,7 @@
 package com.shop.sale;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.shop.core.BaseEntity;
+import com.shop.core.entity.BaseEntity;
 import com.shop.product.Product;
 import com.shop.user.SUser;
 

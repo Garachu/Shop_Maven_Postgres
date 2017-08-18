@@ -1,8 +1,6 @@
 package com.shop.product;
 
-import com.shop.core.BaseRepository;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import com.shop.core.repository.BaseRepository;
 
 import java.util.List;
 import java.util.Optional;
