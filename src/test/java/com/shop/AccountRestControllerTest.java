@@ -1,9 +1,9 @@
 package com.shop;
 
-import com.shop.account.Account;
-import com.shop.account.AccountInModel;
-import com.shop.account.AccountNotFoundException;
-import com.shop.account.AccountService;
+import com.shop.module.account.domain.AccountResponse;
+import com.shop.module.account.exception.AccountNotFoundException;
+import com.shop.module.account.service.AccountService;
+import com.shop.container.MainEntry;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +17,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -105,9 +104,9 @@ public class AccountRestControllerTest {
     @Test
     public void validRequestReturns201Created() throws Exception {
         String json = String.format("{\"accountId\":\"%s\", \"accountName\":\"%s\", \"accountContact\":\"%s\",\"accountType\":\"%s\", \"accountNarration\":\"%s\", \"date\": \"%s\", \"balance\": \"%s\"}",
-                "111111test", "Richard Muinami", "0700242450", "Creditor", "Supplier", "2017-05-08", "104560");
+                "testacco3", "Richard Muinami", "0700242450", "Creditor", "Supplier", "2017-05-08", "104560");
         log.error(json);
-        mockMvc.perform(post("/accounts")
+        mockMvc.perform(post("/accounts/add/one")
                 .contentType(TestUtil.contentType)
                 .content(json))
                 .andDo(print())
@@ -119,7 +118,7 @@ public class AccountRestControllerTest {
     @Test
     public void accountsAreFound() throws Exception {
         //Create the test data which is returned when the findLastWithLimit(20) method is called. We create the test data by using a test data builder class.
-        List<Account> accounts = accountServiceMock.findLastWithLimit(20);
+        List<AccountResponse> accounts = accountServiceMock.findLastWithLimit(20);
         log.info("Test DAta: ===========" + Arrays.toString(accounts.toArray()));
 
         //Configure our mock object to return the created test data when its findLastWithLimit(20) method is invoked.

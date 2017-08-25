@@ -9,3 +9,6 @@ curl -i -X GET -d username=meg -d password=password http://localhost:8081/shop/p
 #-I option only fetches the HTTP headers sent by the server. The alternate to -I is the --head option.
 curl --request GET -I --user  meg:password http://localhost:8081/shop/products
 curl -X GET -I --user  meg:password http://localhost:8081/shop/products
+
+
+mvn dependency:tree

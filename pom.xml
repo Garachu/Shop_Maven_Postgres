@@ -24,38 +24,32 @@
         <h2.version>1.4.187</h2.version>
     </properties>
 
-    <!--Define our depencencies - the libraries we'd like to use-->
     <!--dependencies is just a fancy way of telling Maven "Please download these JARs into my project's classpath"-->
     <dependencies>
 
         <!--
-        Spring Boot comes with one-stop-shop package called Starters that include everything you need for a ready-made application
-        These are what you typically see in the Spring Initialzr with all the dependencies you can wire in
+            Spring Boot comes with one-stop-shop package called Starters that include everything you need for a ready-made application
+            These are what you typically see in the Spring Initialzr with all the dependencies you can wire in
         -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-rest</artifactId>
         </dependency>
-        <!--
-        Add JPA support
-        will download the files required for spring data jpa.
-        -->
+
+        <!--dd JPA support will download the files required for spring data jpa.-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-        <!--
-        proper database drivers
-        -->
+
+        <!--proper database drivers -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>9.4-1206-jdbc42</version>
         </dependency>
-        <!--
-        Add typical dependencies for a web application
-        required because it is web based application to expose the REST endpoints
-        -->
+
+        <!--Add typical dependencies for a web application required because it is web based application to expose the REST endpoints-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -72,33 +66,28 @@
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
         </dependency>
-        <!--
-        Add H2 database support [for running with local profile]
-        Easiest way is to use one that is embedded, which just means it's in-memory,
-        so you don't have to connect it to something lie MySQL with a url and login details
-        H2 DB: in-memory database. It eliminates the need for configuring and starting an actual database for test purposes.
-        -->
+
+        <!--H2 database support [for running with local profile]-->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>${h2.version}</version>
         </dependency>
-        <!--
-        Add MySQL database support [for running with PRODUCTION profile]
-        -->
+
+        <!--Add MySQL database support [for running with PRODUCTION profile]-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
-        <!--
-        The spring-boot-starter-test is the primary dependency that contains the majority of elements required for tests.
-        -->
+
+        <!--The spring-boot-starter-test is the primary dependency that contains the majority of elements required for tests.-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
             <version>1.5.3.RELEASE</version>
         </dependency>
+
         <!--
         Security here it goes
         Once the spring-boot-starter-security dependency on the classpath of the application – Basic Authentication is enabled by default.
@@ -108,6 +97,7 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         -->
+
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
@@ -122,12 +112,10 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
-            <version>4.2.3.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
-            <version>4.2.3.RELEASE</version>
         </dependency>
 
         <!--ACTUATOR-->
@@ -136,23 +124,33 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok-maven -->
+
+        <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.16.8</version>
             <scope>provided</scope>
         </dependency>
+
         <!--Caching dependencies-->
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>18.0</version>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.7.2</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-            <version>4.1.7.RELEASE</version>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>1.7.4.RELEASE</version>
+        </dependency>
+
+
+        <!--ModelMapper -->
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>0.7.4</version>
         </dependency>
     </dependencies>
     <build>

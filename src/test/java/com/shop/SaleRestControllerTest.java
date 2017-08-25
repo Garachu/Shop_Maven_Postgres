@@ -1,10 +1,11 @@
 package com.shop;
 
-import com.shop.sale.Sale;
-import com.shop.sale.SaleInModel;
+import com.shop.container.MainEntry;
+import com.shop.module.sale.domain.Sale;
+import com.shop.module.sale.domain.SaleRequest;
 
 
-import com.shop.sale.SaleService;
+import com.shop.module.sale.service.SaleService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +21,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.Arrays;
 
 import static org.junit.Assert.*;
@@ -93,13 +93,13 @@ public class SaleRestControllerTest {
 
         this.mockMvc.perform(post("/sales")
                 .contentType(TestUtil.contentType)
-                .content(json(new SaleInModel(900, 2, "2017-07-24", 99999, 9999))))
+                .content(json(new SaleRequest(900, 2, "2017-07-24", 99999, 9999))))
                 .andExpect(status().isNotFound());
     }
 
     @Test
     public void createSaleWithInvalidUser() throws Exception {
-        SaleInModel saleInModel = new SaleInModel();
+        SaleRequest saleInModel = new SaleRequest();
         saleInModel.setSp(900);
         saleInModel.setQuantity(2);
         saleInModel.setDate("2017-07-24");
@@ -108,13 +108,13 @@ public class SaleRestControllerTest {
 
         this.mockMvc.perform(post("/sales")
                 .contentType(TestUtil.contentType)
-                .content(json(new SaleInModel(900, 2, "2017-07-24", 9, 999))))
+                .content(json(new SaleRequest(900, 2, "2017-07-24", 9, 999))))
                 .andExpect(status().isNotFound());
     }
 
     @Test
     public void createSaleWithValidData() throws Exception {
-        SaleInModel saleInModel = new SaleInModel(900, 2, "2017-07-24", 1, 1);
+        SaleRequest saleInModel = new SaleRequest(900, 2, "2017-07-24", 1, 1);
         if(saleInModel == null){
             System.err.println("There is an error");
         }

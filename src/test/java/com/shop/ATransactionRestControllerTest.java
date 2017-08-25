@@ -1,12 +1,12 @@
 package com.shop;
 
+import com.shop.container.MainEntry;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -14,7 +14,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.nio.charset.Charset;
 import java.util.Arrays;
 import static org.junit.Assert.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -59,18 +58,13 @@ public class ATransactionRestControllerTest {
     @Test
     public void validRequestReturns201Created() throws Exception{
         String json = String.format("{\"accountId\":\"%s\", \"transactionType\":\"%s\", \"narration\":\"%s\", \"amount\":\"%s\", \"date\":\"%s\"}",
-                "29380231","Credit", "Payment", "1000", "2017-05-08");
+                "testaccou","Pay", "Testing", "1000", "2017-08-25");
 
         mockMvc.perform(post("/transactions")
                 .contentType(TestUtil.contentType)
                 .content(json))
                 .andDo(print())
                 .andExpect(status().isCreated());
-    }
-
-    @Test
-    public void fetchTransactionsByAccountAccountIdShouldReturn200Ok() throws Exception {
-
     }
 
 

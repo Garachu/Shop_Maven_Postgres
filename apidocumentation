@@ -31,7 +31,7 @@ POST        shop/sales
 
 Account
 --------------------------------------------------------------------------------------------------------------
-POST        shop/accounts
+POST        shop/accounts/add/one
 
 {
 	"accountId":"29380231",
@@ -43,3 +43,81 @@ POST        shop/accounts
 	"balance": "18540"
 
 }
+
+POST        shop/accounts/add/bulk/1
+{
+	"accounts": [
+					{
+                        "accountId":"29380231",
+                        "accountName":"Margaret Wambui Garachu",
+                        "accountContact":"0700242450",
+                        "accountType":"Creditor",
+                        "accountNarration":"Supplier",
+                        "date": "2017-08-16",
+                        "balance": "900"
+
+				    },
+                    {
+                        "accountId":"29380231",
+                        "accountName":"Margaret Wambui Garachu",
+                        "accountContact":"0700242450",
+                        "accountType":"Creditor",
+                        "accountNarration":"Supplier",
+                        "date": "2017-08-16"
+
+                    }
+                ]
+}
+
+POST        shop/accounts/add/bulk/2
+{
+	"accounts": [
+					{
+					"accountId":"29380231",
+					"accountName":"Margaret Wambui Garachu",
+					"accountContact":"0700242450",
+					"accountType":"Creditor",
+					"accountNarration":"Supplier",
+					"date": "2017-08-16",
+					"balance": "900gg"
+
+				} ,
+				{
+					"accountId":"29380231",
+					"accountName":"Margaret Wambui Garachu",
+					"accountContact":"0700242450",
+					"accountType":"Creditor",
+					"accountNarration":"Supplier",
+					"date": "2017-08-16"
+
+				}
+
+]
+
+}
+
+
+POST        shop/accounts/add/bulk/3
+[
+
+	{
+	    "accountId":"1116009yiiihh9444ll1",
+        "accountName":"Richard Muinami",
+        "accountContact":"0700242450",
+        "accountType":"Creditor",
+        "accountNarration":"Supplier",
+        "date": "15-08-2017",
+        "balance": "900"
+
+    } ,
+	{
+        "accountId":"1116009yiiihh9444ll1",
+        "accountName":"Richard Muinami",
+        "accountContact":"0700242450",
+        "accountType":"Creditor",
+        "accountNarration":"Supplier",
+        "date": "15-08-2017",
+        "balance": "100"
+    }
+
+]
