@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/sales")
-class SaleController {
+class SaleRestController {
 
     private final SaleService saleService;
 
@@ -38,7 +38,7 @@ class SaleController {
     private final SaleRepository saleRepository;
 
     @Autowired
-    public SaleController(SaleService saleService, ProductService productService, SUserService sUserService, SaleRepository saleRepository) {
+    public SaleRestController(SaleService saleService, ProductService productService, SUserService sUserService, SaleRepository saleRepository) {
         this.saleService = saleService;
         this.productService = productService;
         this.sUserService = sUserService;

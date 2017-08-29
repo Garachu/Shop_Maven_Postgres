@@ -74,7 +74,7 @@ public class ApiUserRestControllerTest {
     @Test
     public void createApiUser() throws Exception {
         String json = String.format("{\"username\":\"%s\", \"password\":\"%s\", \"emailId\":\"%s\",\"roles\":\"%s\"}",
-                "test3", "password", "megngarachu@gmail.com", "USER, ADMIN");
+                TestUtil.generateRandomStr(), "password", "megngarachu@gmail.com", "USER, ADMIN");
 
         this.mockMvc.perform(post("/apiusers")
                 .contentType(contentType)

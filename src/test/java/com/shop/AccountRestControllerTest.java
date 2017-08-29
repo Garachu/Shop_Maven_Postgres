@@ -104,7 +104,7 @@ public class AccountRestControllerTest {
     @Test
     public void validRequestReturns201Created() throws Exception {
         String json = String.format("{\"accountId\":\"%s\", \"accountName\":\"%s\", \"accountContact\":\"%s\",\"accountType\":\"%s\", \"accountNarration\":\"%s\", \"date\": \"%s\", \"balance\": \"%s\"}",
-                "testacco3", "Richard Muinami", "0700242450", "Creditor", "Supplier", "2017-05-08", "104560");
+                TestUtil.generateRandomAccountId(), "Richard Muinami", "0700242450", "Creditor", "Supplier", "2017-05-08", "104560");
         log.error(json);
         mockMvc.perform(post("/accounts/add/one")
                 .contentType(TestUtil.contentType)
