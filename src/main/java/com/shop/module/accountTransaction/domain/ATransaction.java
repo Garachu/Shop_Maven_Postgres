@@ -21,6 +21,7 @@ import java.util.Date;
 @Table(name = "account_transaction", catalog = "shop_home_test", schema = "base")
 @Getter(AccessLevel.PACKAGE)
 @Setter(AccessLevel.PACKAGE)
+@NoArgsConstructor
 public class ATransaction extends BaseEntity{
 
     @ManyToOne()
