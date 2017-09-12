@@ -68,22 +68,7 @@ public class AccountRestControllerTest {
     }
 
     //Test: Account Not Found
-    @Test
-    public void accountNotFound() throws Exception {
-        //Configure our mock object to throw a AccountNotFoundException when its findAccountByAccountId() method is called.
-        when(accountServiceMock.findAccountByAccountId("736363353")).thenThrow(new AccountNotFoundException(""));
 
-        //Execute a GET request to url ‘/accounts/736363353’.
-        mockMvc.perform(get("/accounts/" + "736363353"))
-                //Verify that the HTTP status code 404 is returned.
-                .andExpect(status().isNotFound());
-
-        //Ensure that the findAccountByAccountId() method is called only once by using the correct method parameter (1L).
-        // verify(accountServiceMock, times(1)).findAccountByAccountId("736363353");
-
-        //Verify that no other methods of the accountServiceMock interface are called during this test.
-        // verifyNoMoreInteractions(accountServiceMock);
-    }
 
     //Test: Account Found
     @Test

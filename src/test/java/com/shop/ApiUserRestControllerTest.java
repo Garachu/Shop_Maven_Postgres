@@ -71,16 +71,6 @@ public class ApiUserRestControllerTest {
 
 
     //Test: Create ApiUser returns 201
-    @Test
-    public void createApiUser() throws Exception {
-        String json = String.format("{\"username\":\"%s\", \"password\":\"%s\", \"emailId\":\"%s\",\"roles\":\"%s\"}",
-                TestUtil.generateRandomStr(), "password", "megngarachu@gmail.com", "USER, ADMIN");
-
-        this.mockMvc.perform(post("/apiusers")
-                .contentType(contentType)
-                .content(json))
-                .andExpect(status().isCreated());
-    }
 
     //Test: findall ApiUser returns 200
     @Test

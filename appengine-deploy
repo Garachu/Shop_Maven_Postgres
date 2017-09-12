@@ -1,0 +1,66 @@
+Ref:
+https://code.google.com/archive/p/guestbook-spring-hibernate/
+https://github.com/GoogleCloudPlatform/appengine-cloudsql-native-mysql-hibernate-jpa-demo-java
+https://olavloite.github.io/2017/03/11/Google-Cloud-Spanner-with-Spring-Boot-JPA-and-Hibernate.html
+https://github.com/rbarbioni/gcloud-docker-spring-boot-data-jpa-starter/blob/master/src/main/resources/application-gcp.properties
+https://github.com/rbarbioni/gcloud-docker-spring-boot-data-jpa-starter/blob/master/src/main/resources/application-gcp.properties
+
+gcp project-id : shop-maven-postgres
+
+App Engine flexible environment to Cloud SQL for PostgresSQL
+---------------------------------------------------------------
+N/B Connection from an App Engine Standard environment application to PostgresSQL instance is not supported.
+Cloud SQL is a SQL database that lives in Google's cloud.
+
+#Update the Cloud SDK and install the Endpoints components:
+gcloud components update
+
+gcloud components update app-engine-java
+
+#Make sure that Cloud SDK (gcloud) is authorized to access your data and services on Google Cloud Platform:
+gcloud auth login
+
+#Set the default project to your project ID:
+gcloud config set project shop-maven-postgres
+
+#Building the sample project
+mvn clean package
+mvn package -DskipTests
+
+#Generating the OpenAPI configuration file
+mvn exec:java -DGetSwaggerDoc
+
+#Deploying the Endpoints configuration
+gcloud service-management deploy openapi.json
+
+#Set the ENDPOINTS_SERVICE_NAME environment variable to: [YOUR_PROJECT_ID].appspot.com
+export ENDPOINTS_SERVICE_NAME=expense-tracker-178909.appspot.com
+
+#Acquire new user credentials to use for Application Default Credentials.
+gcloud auth application-default login
+
+#Run the development server:
+mvn appengine:run
+Dev App Server does not support App Engine Flexible Environmen
+
+mvn spring-boot:run -DskipTests
+
+#Run deploy online
+mvn appengine:deploy
+
+
+#Build your app
+mvn package
+
+#run your app
+mvn jetty:run
+
+#deploy your application
+mvn appengine:deploy
+
+Cloud SQL Socket Factory for JDBC drivers
+----------------------------------------------
+The Cloud SQL Socket Factory is a library for the MySQL/Postgres JDBC drivers that allows a user with the appropriate permissions to connect to a Cloud SQL database without having to deal with IP whitelisting or SSL certificates manually.
+
+
+
