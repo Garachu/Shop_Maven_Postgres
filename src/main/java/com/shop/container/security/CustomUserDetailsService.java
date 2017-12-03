@@ -57,6 +57,7 @@ public class CustomUserDetailsService implements UserDetailsService{
 
         //roles are saved as String comma separated i,e  String roles = "ADMIN, USER";
         String strRoles = apiUser.getRoles();
+
         //Split the comma separated list of roles to an Array
         List<String> roles = Arrays.asList(strRoles.split("\\s*,\\s*"));
 

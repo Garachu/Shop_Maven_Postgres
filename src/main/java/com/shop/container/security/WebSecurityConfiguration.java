@@ -42,20 +42,20 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter{
         Doing otherwise has unpredictable results.
      */
 
-    @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-       auth.userDetailsService(userDetailService).passwordEncoder(ApiUser.PASSWORD_ENCODER);
-    }
-
-//
 //    @Override
 //    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        log.info("configureGlobal");
-//        auth
-//                .inMemoryAuthentication()
-//                .withUser("user").password("password").roles("USER").and()
-//                .withUser("meg").password("password").roles("USER", "ADMIN");
+//       auth.userDetailsService(userDetailService).passwordEncoder(ApiUser.PASSWORD_ENCODER);
 //    }
+
+
+    @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        log.info("configureGlobal");
+        auth
+                .inMemoryAuthentication()
+                .withUser("user").password("password").roles("USER").and()
+                .withUser("meg").password("password").roles("USER", "ADMIN");
+    }
 
 
     @Override
