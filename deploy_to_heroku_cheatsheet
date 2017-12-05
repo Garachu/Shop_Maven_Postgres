@@ -1,3 +1,5 @@
+Heroku is Paas - Platform As A Service
+
 # determine whether your app already has Heroku postgres provisioned
 heroku addons
 
