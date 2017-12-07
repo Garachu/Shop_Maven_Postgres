@@ -3,8 +3,6 @@ package com.shop;
 import com.shop.container.MainEntry;
 import com.shop.module.sale.domain.Sale;
 import com.shop.module.sale.domain.SaleRequest;
-
-
 import com.shop.module.sale.service.SaleService;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,10 +21,13 @@ import org.springframework.web.context.WebApplicationContext;
 import java.io.IOException;
 import java.util.Arrays;
 
-import static org.junit.Assert.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
 /**
  * Created by meg on 7/22/17.
@@ -47,7 +48,6 @@ public class SaleRestControllerTest {
 
     @Autowired
     private WebApplicationContext webApplicationContext;
-
 
     private SaleService saleService;
 
@@ -72,8 +72,6 @@ public class SaleRestControllerTest {
         this.mockMvc = webAppContextSetup(webApplicationContext).build();
 
     }
-
-
 
     @Test
     public void findAll() throws Exception {
@@ -115,7 +113,7 @@ public class SaleRestControllerTest {
     @Test
     public void createSaleWithValidData() throws Exception {
         SaleRequest saleInModel = new SaleRequest(900, 2, "2017-07-24", 1, 1);
-        if(saleInModel == null){
+        if (saleInModel == null) {
             System.err.println("There is an error");
         }
 
@@ -124,7 +122,6 @@ public class SaleRestControllerTest {
                 .content(json(saleInModel)))
                 .andExpect(status().isCreated());
     }
-
 
     protected String json(Object o) throws IOException {
         MockHttpOutputMessage mockHttpOutputMessage = new MockHttpOutputMessage();
@@ -143,7 +140,5 @@ public class SaleRestControllerTest {
         assertEquals("New South Wales", sale.getTimestamp());
         assertEquals("2000", sale.getUser());
     }
-
-
 
 }

@@ -2,6 +2,7 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.meg</groupId>
@@ -20,37 +21,11 @@
         <version>1.4.3.RELEASE</version>
     </parent>
 
-    <!--
     <properties>
-        <java.version>1.8</java.version>
-        <h2.version>1.4.187</h2.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <full-artifact-name>target/${project.artifactId}-${project.version}.jar</full-artifact-name>
     </properties>
-    -->
-    <!--
-
-    <properties>
-        <appengine.app.appId>shop-maven-postgres</appengine.app.appId>
-        <appengine.app.version>1</appengine.app.version>
-        <appengine.target.version>1.9.48</appengine.target.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <cloudsql.url>jdbc:google:postgresql://your-instance-name/demo?user=root</cloudsql.url>
-        <cloudsql.url.dev>jdbc:mysql://localhost/demo?user=root</cloudsql.url.dev>
-    </properties>-->
-
-
-    <!--
-        INSTANCE_CONNECTION_NAME from Cloud Console > SQL > Instance Details > Properties
-        or `gcloud sql instances describe <instance> | grep connectionName`
-    -->
-    <!--
-    <java.version>1.8</java.version>
-    <INSTANCE_CONNECTION_NAME>Project:Region:Instance</INSTANCE_CONNECTION_NAME>
-    <user>root</user>
-    <password>password</password>
-    <database>sqldemo</database>
-    <sqlURL>jdbc:postgresql://google/${database}?useSSL=false&amp;socketFactoryArg=${INSTANCE_CONNECTION_NAME}&amp;socketFactory=com.google.cloud.sql.postgres.SocketFactory&amp;user=${user}&amp;password=${password}</sqlURL>
-</properties>
--->
 
     <!--dependencies is just a fancy way of telling Maven "Please download these JARs into my project's classpath"-->
     <dependencies>
@@ -95,23 +70,6 @@
             <artifactId>HikariCP</artifactId>
         </dependency>
 
-        <!--H2 database support [for running with local profile]-->
-        <!--
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>${h2.version}</version>
-        </dependency>
-        -->
-
-        <!--Add MySQL database support [for running with PRODUCTION profile]-->
-        <!--
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-        -->
-
         <!--The spring-boot-starter-test is the primary dependency that contains the majority of elements required for tests.-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -120,21 +78,12 @@
             <version>1.5.3.RELEASE</version>
         </dependency>
 
-        <!--
-        Security here it goes
-        Once the spring-boot-starter-security dependency on the classpath of the application – Basic Authentication is enabled by default.
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-        -->
-
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.5</version>
         </dependency>
+
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
@@ -145,6 +94,7 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
@@ -161,7 +111,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.16.8</version>
+            <version>1.16.16</version>
             <scope>provided</scope>
         </dependency>
 
@@ -171,12 +121,12 @@
             <artifactId>jedis</artifactId>
             <version>2.7.2</version>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-redis</artifactId>
             <version>1.7.4.RELEASE</version>
         </dependency>
-
 
         <!--ModelMapper -->
         <dependency>
@@ -196,55 +146,17 @@
         </dependency>
 
     </dependencies>
+
     <build>
         <plugins>
+
+            <!-- This makes running your app simple: just type mvn spring-boot:run-->
             <plugin>
-                <!--
-                Include if you want to make an executable jar[FAT JAR which
-                includes all dependencies along with sprinboot loader] that you can run on
-                    commandline using java -jar NAME
-                    -->
-                <!--
-                This makes running your app simple: just type
-                mvn spring-boot:run
-                -->
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
-            <!--To develop and deploy your application-->
-            <!--
-            <plugin>
-                <groupId>com.google.cloud.tools</groupId>
-                <artifactId>appengine-maven-plugin</artifactId>
-                <version>1.3.1</version>
-            </plugin>
-            -->
-            <plugin>
-                <groupId>com.heroku.sdk</groupId>
-                <artifactId>heroku-maven-plugin</artifactId>
-                <version>1.1.3</version>
-                <configuration>
-
-                    <processTypes>
-                        <web>java $JAVA_OPTS -Dserver.port=$PORT -cp
-                            target/classes:target/dependency/*
-                        </web>
-                    </processTypes>
-                </configuration>
-            </plugin>
-
-            <!--To test your application quickly without creating a WAR file, use-->
-            <!---
-            <plugin>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.3.7.v20160115</version>
-            </plugin>
-            -->
-
         </plugins>
     </build>
-
 
 </project>

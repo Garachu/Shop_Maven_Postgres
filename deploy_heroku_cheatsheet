@@ -1,23 +1,22 @@
 Ref: http://codeboje.de/deploy-spring-boot-heroku/
-##### STEP 1 #####
+STEP 1:
 Install Heroku CLI
 
-##### STEP 2 #####
+STEP 2:
 Create an account on Heroku
 
-##### STEP 3 #####
+STEP 3:
 -cd <application directory>
 -heroku login
 
-##### STEP 4 #####
-Creates a git repository on Heroku and link it as a remote in our repository under the name heroku
-App name is optional and if not specified, Heroku generates one.
+STEP 4:
+Creates a git repository on Heroku and link it as a remote in our repository under the name heroku. App name is optional and if not specified, Heroku generates one.
 -heroku create shop-maven-postgres-v1
 
-##### STEP 5 #####
+STEP 5:
 Create a file named Procfile in the root of git repository
 
-##### STEP 6 #####
+STEP 6:
 Create the Postgres Service
 -heroku addons:create heroku-postgresql:hobby-dev
 
@@ -29,20 +28,16 @@ Database has been created and is available
 Created postgresql-symmetrical-87871 as HEROKU_POSTGRESQL_CYAN_URL
 Use heroku addons:docs heroku-postgresql to view documentation
 
-
-##### STEP 7 #####
+STEP 7:
 Declare in application.properties which database to use
-
+The environment variable JDBC_DATABASE_URL is provided by Heroku and contains the full JDBC string for connecting to the database.
 -spring.datasource.url=${JDBC_DATABASE_URL}
 
-The environment variable JDBC_DATABASE_URL is provided by Heroku and contains the full JDBC string for connecting to the database.
-
-##### STEP 8a #####
-Commit changes
+STEP 8a:
 #Pushes the source code to the Heroku Git repo, so Heroku can build and deploy it
 git push heroku deploy_to_heroku
 
-##### STEP 8b #####
+STEP 8b:
 Add the plugin to the plugins section in your pom
 <plugin>
     <groupId>com.heroku.sdk</groupId>
@@ -61,15 +56,39 @@ Add the plugin to the plugins section in your pom
 deploy using Maven
 -mvn clean heroku:deploy
 
-##### STEP 9 #####
+STEP 9:
 Make a request
 -heroku open
 
 Remove the app
 -heroku apps:destroy <app-name>
 
-mvn compile
-mvn package
+
+------------------------------------------------------------------------------------------------------------------------
+Deploy jar file without using heroku deploy CLI
+------------------------------------------------------------------------------------------------------------------------
+
+heroku plugins:install heroku-cli-deploy
+
+mvn clean install
+
+mvn clean install -DskipTests
+
+heroku deploy:jar target/Shop_Maven_Postgres-1.0-SNAPSHOT.jar --app radiant-sierra-43119
+
+heroku open --app radiant-sierra-43119
+
+heroku logs --app radiant-sierra-43119
+
+heroku logs --tail --app radiant-sierra-43119
+
+https://radiant-sierra-43119.herokuapp.com/
+
+https://radiant-sierra-43119.herokuapp.com/
+
+web: java -Dserver.port=$PORT -jar Shop_Maven_Postgres-1.0-SNAPSHOT.jar
+
+
 
 
 

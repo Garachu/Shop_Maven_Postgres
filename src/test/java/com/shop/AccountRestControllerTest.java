@@ -1,9 +1,8 @@
 package com.shop;
 
-import com.shop.module.account.domain.AccountResponse;
-import com.shop.module.account.exception.AccountNotFoundException;
-import com.shop.module.account.service.AccountService;
 import com.shop.container.MainEntry;
+import com.shop.module.account.domain.AccountResponse;
+import com.shop.module.account.service.AccountService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
@@ -69,7 +68,6 @@ public class AccountRestControllerTest {
 
     //Test: Account Not Found
 
-
     //Test: Account Found
     @Test
     public void accountFound() throws Exception {
@@ -85,7 +83,6 @@ public class AccountRestControllerTest {
 
     }
 
-
     @Test
     public void validRequestReturns201Created() throws Exception {
         String json = String.format("{\"accountId\":\"%s\", \"accountName\":\"%s\", \"accountContact\":\"%s\",\"accountType\":\"%s\", \"accountNarration\":\"%s\", \"date\": \"%s\", \"balance\": \"%s\"}",
@@ -97,7 +94,6 @@ public class AccountRestControllerTest {
                 .andDo(print())
                 .andExpect(status().isCreated());
     }
-
 
     //Test: Accounts are found
     @Test

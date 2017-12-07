@@ -1,1 +1,0 @@
-web: java -Dserver.port=$PORT -jar shop-maven-postgres-v1/target/sbb-comment-app.jar

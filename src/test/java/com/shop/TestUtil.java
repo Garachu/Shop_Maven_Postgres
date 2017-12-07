@@ -1,6 +1,7 @@
 package com.shop;
 
 import org.springframework.http.MediaType;
+
 import java.nio.charset.Charset;
 import java.util.Random;
 
@@ -23,6 +24,5 @@ public class TestUtil {
         }
         return str.toString();
     }
-
 
 }

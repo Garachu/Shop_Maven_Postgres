@@ -1,7 +1,6 @@
 package com.shop;
 
 import com.shop.container.MainEntry;
-import com.shop.module.product.domain.Product;
 import com.shop.module.product.exception.ProductNotFoundException;
 import com.shop.module.product.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
@@ -22,12 +21,13 @@ import org.springframework.web.context.WebApplicationContext;
 import java.io.IOException;
 import java.util.Arrays;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
-
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
 /**
  * Created by meg on 7/21/17.
@@ -78,17 +78,15 @@ public class ProductRestControllerTest {
     //Test create single Product
     @Test
     public void createProduct() throws Exception {
-       String json = String.format("{\"label\":\"%s\", \"description\":\"%s\", \"bp\":\"%s\",\"price\":\"%s\", \"category\":\"%s\"}",
+        String json = String.format("{\"label\":\"%s\", \"description\":\"%s\", \"bp\":\"%s\",\"price\":\"%s\", \"category\":\"%s\"}",
                 "test label", "test description", "500", "600", "test");
-       log.info("createProduct() json: " + json);
-
+        log.info("createProduct() json: " + json);
 
         this.mockMvc.perform(post("/products/add/one")
                 .contentType(TestUtil.contentType)
                 .content(json))
                 .andExpect(status().isCreated());
     }
-
 
     //Test: Product Not Found
     @Test
@@ -109,13 +107,11 @@ public class ProductRestControllerTest {
         // verifyNoMoreInteractions(accountServiceMock);
     }
 
-
     protected String json(Object o) throws IOException {
         MockHttpOutputMessage mockHttpOutputMessage = new MockHttpOutputMessage();
         this.mappingJackson2HttpMessageConverter.write(
                 o, MediaType.APPLICATION_JSON, mockHttpOutputMessage);
         return mockHttpOutputMessage.getBodyAsString();
     }
-
 
 }

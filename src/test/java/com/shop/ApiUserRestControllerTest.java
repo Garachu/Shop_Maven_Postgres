@@ -1,11 +1,6 @@
 package com.shop;
 
-import com.shop.module.account.domain.Account;
-import com.shop.module.account.domain.AccountResponse;
-import com.shop.module.account.exception.AccountNotFoundException;
-import com.shop.module.account.service.AccountService;
 import com.shop.container.MainEntry;
-import com.shop.module.apiuser.domain.ApiUserRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,16 +15,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.Arrays;
-import java.util.List;
 
-import static com.shop.TestUtil.contentType;
 import static org.junit.Assert.assertNotNull;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.mockito.internal.verification.VerificationModeFactory.times;
-import static org.springframework.http.converter.json.Jackson2ObjectMapperBuilder.json;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -54,7 +42,6 @@ public class ApiUserRestControllerTest {
 
     @Autowired
     void setConverters(HttpMessageConverter<?>[] converters) {
-
         this.mappingJackson2HttpMessageConverter = Arrays.asList(converters).stream()
                 .filter(hmc -> hmc instanceof MappingJackson2HttpMessageConverter)
                 .findAny()
@@ -68,7 +55,6 @@ public class ApiUserRestControllerTest {
     public void setup() throws Exception {
         this.mockMvc = webAppContextSetup(webApplicationContext).build();
     }
-
 
     //Test: Create ApiUser returns 201
 
@@ -91,7 +77,6 @@ public class ApiUserRestControllerTest {
                 //Verify that the content type of the response is ‘application/json’ and its character set is ‘UTF-8’.
                 .andExpect(content().contentType(TestUtil.contentType));
 
-
     }
 
     //Test: ApiUser Not Found
@@ -103,11 +88,5 @@ public class ApiUserRestControllerTest {
                 .andExpect(status().isNotFound());
 
     }
-
-
-
-
-
-
 
 }

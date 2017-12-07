@@ -1,23 +1,24 @@
 Heroku is Paas - Platform As A Service
 
+# login to heroku
+-heroku login
+
 # determine whether your app already has Heroku postgres provisioned
-heroku addons
+-heroku addons
+Postgres Database: postgresql-dimensional-16683
 
 # Provision heroku-postgres if it doesn't appear in your app's list of add-ons
 heroku addons:create heroku-postgresql:<PLAN_NAME>
-heroku addons:create heroku-postgresql:hobby-dev
-
-PLAN NAME: hobby-dev === Free
+-heroku addons:create heroku-postgresql:hobby-dev
 
 # Check configurations
-# Heroku recommends using the DATABASE_URL config var to sotre the URL of the primary database
+# Heroku recommends using the DATABASE_URL config var to store the URL of the primary database
 # If your app only has one database, Its URL has already been assigned to the DATABASE_URL config var.
-heroku config
+-heroku config
 DATABASE_URL: postgres://jcpnkcyhcsqhfq:a0f1dbd95406fa066ce9a4de68841260f387885380031658abb746849e9bb6b9@ec2-50-19-86-17.compute-1.amazonaws.com:5432/djpfucs1tor57
 
 # Set the primary database with below command
 heroku pg:promote HEROKU_POSTGRESQL_YELLOW
-
 
 # logs on database access
 heroku logs -t
@@ -43,7 +44,6 @@ heroku pg:psql <database-name>
 # pull remote data from a Heroku Postgres database to a database on your local machine
 heroku pg:pull HEROKU_POSTGRESQL_MAGENTA mylocaldb --app radiant-sierra-43119
 
-
 # drop and recreate your database
 heroku pg:reset DATABASE
 
@@ -55,6 +55,8 @@ heroku pg:reset DATABASE
 
 # switch databases:
 \connect database_name
+
+heroku pg:push shop_home_test DATABASE_URL --app radiant-sierra-43119
 
 
 

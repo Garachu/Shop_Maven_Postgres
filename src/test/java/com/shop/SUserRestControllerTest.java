@@ -11,8 +11,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-
 /**
  * Created by meg on 8/4/17.
  */
@@ -27,7 +25,7 @@ public class SUserRestControllerTest {
     private MockMvc mockMvc;
 
     @Before
-    public void setup(){
+    public void setup() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
     }
 

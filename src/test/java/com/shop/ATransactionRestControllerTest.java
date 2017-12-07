@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.Arrays;
+
 import static org.junit.Assert.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -56,9 +57,9 @@ public class ATransactionRestControllerTest {
     }
 
     @Test
-    public void validRequestReturns201Created() throws Exception{
+    public void validRequestReturns201Created() throws Exception {
         String json = String.format("{\"accountId\":\"%s\", \"transactionType\":\"%s\", \"narration\":\"%s\", \"amount\":\"%s\", \"date\":\"%s\"}",
-                "testaccou","Pay", "Testing", "1000", "2017-08-25");
+                "testaccou", "Pay", "Testing", "1000", "2017-08-25");
 
         mockMvc.perform(post("/transactions")
                 .contentType(TestUtil.contentType)
@@ -66,6 +67,5 @@ public class ATransactionRestControllerTest {
                 .andDo(print())
                 .andExpect(status().isCreated());
     }
-
 
 }
