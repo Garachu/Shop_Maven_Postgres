@@ -1,5 +1,6 @@
-package com.shop.container;
+package com.shop.container.config;
 
+import com.shop.container.MainEntry;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;

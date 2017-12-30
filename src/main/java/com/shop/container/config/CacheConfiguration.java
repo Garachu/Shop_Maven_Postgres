@@ -1,4 +1,4 @@
-package com.shop.container;
+package com.shop.container.config;
 
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
@@ -16,7 +16,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 
 @Configuration
 @EnableCaching
-public class CacheConfig extends CachingConfigurerSupport {
+public class CacheConfiguration extends CachingConfigurerSupport {
 
     //Need a connection factory and a RedisTemplate bean for Spring to communicate with the Redis database
     //After setting up caching configuration, start caching method results with the @Cacheable annotation.

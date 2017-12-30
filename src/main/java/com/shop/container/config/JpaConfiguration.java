@@ -1,4 +1,4 @@
-package com.shop.container;
+package com.shop.container.config;
 
 import com.shop.module.common.dao.BaseRepositoryImpl;
 import org.springframework.context.annotation.Configuration;
@@ -13,5 +13,5 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableJpaRepositories(basePackages = "com.shop.module",repositoryBaseClass = BaseRepositoryImpl.class)
 @Configuration
 @EnableTransactionManagement
-public class ApplicationConfiguration {
+public class JpaConfiguration {
 }

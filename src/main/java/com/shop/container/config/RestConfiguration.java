@@ -1,4 +1,4 @@
-package com.shop.container;
+package com.shop.container.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +12,7 @@ import org.springframework.validation.Validator;
  */
 
 @Configuration
-public class RestConfig extends RepositoryRestConfigurerAdapter{
+public class RestConfiguration extends RepositoryRestConfigurerAdapter{
 
     @Autowired
     private Validator globalValidator;
