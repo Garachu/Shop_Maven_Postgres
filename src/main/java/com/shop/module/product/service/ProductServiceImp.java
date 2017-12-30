@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -26,14 +27,14 @@ class ProductServiceImp implements ProductService {
 
     private final ProductRepository productRepository;
 
-
     @Autowired
     public ProductServiceImp(ProductRepository productRepository) {
-
         this.productRepository = productRepository;
     }
 
-    //Fetches all the products in asc order
+    /*
+    * Fetches all the products in asc order
+    */
     @Override
     public List<ProductResponse> findAll() {
         List<Product> list = productRepository.findAll();
@@ -78,6 +79,18 @@ class ProductServiceImp implements ProductService {
        return product.getRecordstate();
     }
 
+    @Override
+    public List<ProductResponse> findByLabelContainingIgnoreCase(String label) {
+        Optional<List<Product>> listOptional = productRepository.findByLabelContainingIgnoreCase(label);
+        if(listOptional.isPresent()){
+            List<Product> products = listOptional.get();
+            return products.stream()
+                    .map(product -> ProductResponse.convertoDTO(product))
+                    .collect(Collectors.toList());
+        }
+
+        return new ArrayList<>();
+    }
 
     @Override
     public List<Product> findByLabel(String label) {

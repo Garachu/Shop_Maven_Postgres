@@ -19,11 +19,16 @@ public interface ProductService {
 
     void validateProduct(int productId);
 
-
     List<ProductResponse> findAll();
+
     ProductResponse addProduct(ProductRequest productRequest);
+
     List<ProductResponse> addProducts(ProductRequest[] productRequests);
+
     ProductResponse findProduct(Integer id);
+
     Boolean deleteProduct(Integer id);
+
+    List<ProductResponse> findByLabelContainingIgnoreCase(String label);
 
 }
