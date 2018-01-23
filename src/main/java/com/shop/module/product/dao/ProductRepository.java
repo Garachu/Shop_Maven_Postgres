@@ -13,6 +13,10 @@ import java.util.Optional;
 public interface ProductRepository extends BaseRepository<Product, Integer> {
 
     List<Product> findByLabel(String label);
+
     Optional<Product> findById(Integer productId);
+
     Optional<List<Product>> findByLabelContainingIgnoreCase(String label);
+
+
 }

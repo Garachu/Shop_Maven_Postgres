@@ -93,6 +93,11 @@ class ProductServiceImp implements ProductService {
     }
 
     @Override
+    public void findProductsPlusStock() {
+
+    }
+
+    @Override
     public List<Product> findByLabel(String label) {
         return productRepository.findByLabel(label);
     }

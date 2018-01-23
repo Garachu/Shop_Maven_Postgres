@@ -29,7 +29,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 @Slf4j
-public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter{
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
     @Autowired
     CustomUserDetailsService userDetailService;
@@ -66,7 +66,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .anyRequest() //authorize all the requests
                 .fullyAuthenticated()
                 .and().httpBasic()
-                .and().csrf().disable();
+                .and().csrf().disable(); // Cross Site Request Forgerly, should never be turned off in a real world application
     }
 
     @Bean

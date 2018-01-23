@@ -31,4 +31,5 @@ public interface ProductService {
 
     List<ProductResponse> findByLabelContainingIgnoreCase(String label);
 
+    void findProductsPlusStock();
 }

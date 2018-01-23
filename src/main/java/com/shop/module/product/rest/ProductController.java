@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,12 +43,8 @@ public class ProductController {
      */
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<?> findAll() {
-        Result result = new Result();
         List<ProductResponse> list = productService.findAll();
-        String message = list.isEmpty() ? "0 Records Found" : "success";
-        result.setMessage(message);
-        result.setResult(list);
-        return ResponseEntity.ok(result);
+        return ResponseEntity.ok(list);
     }
 
     /**
@@ -59,9 +56,7 @@ public class ProductController {
             return ResponseEntity.badRequest().body(ValidationErrorBuilder.fromBindingErrors(errors));
         }
 
-        Result result = new Result();
-        result.setMessage("success");
-        result.setResult(Arrays.asList(productService.addProduct(productRequest)));
+        List<ProductResponse> result = Arrays.asList(productService.addProduct(productRequest));
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
 
@@ -83,11 +78,8 @@ public class ProductController {
             }
         }
 
-        Result result = new Result();
         List<ProductResponse> list = productService.addProducts(productRequests);
-        result.setMessage("success");
-        result.setResult(list);
-        return ResponseEntity.ok(result);
+        return ResponseEntity.ok(list);
     }
 
     /**
@@ -120,11 +112,8 @@ public class ProductController {
      */
     @RequestMapping(method = RequestMethod.POST, value = "/search")
     public ResponseEntity<?> searchByProductLabelContaining(@Valid @RequestBody SearchCriteria search, Errors errors) {
-        Result result = new Result();
         List<ProductResponse> list = productService.findByLabelContainingIgnoreCase(search.getLabel());
-        result.setMessage(list.isEmpty() ? "0 Records Found" : "success");
-        result.setResult(list);
-        return ResponseEntity.ok(result);
+        return ResponseEntity.ok(list);
     }
 
 }
